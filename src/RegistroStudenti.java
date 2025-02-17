@@ -9,25 +9,24 @@ public class RegistroStudenti {
     private Studente[] registro;
 
     public RegistroStudenti () {
-        registro = new Studente[100];
+        registro = new Studente[0];
     }
 
-    private int counter = 0;
-
     public void aggiungiStudente(Studente studente) {
-        if (counter < registro.length) {
-            registro[counter] = studente;
-            counter ++;
-        } else {
-            System.out.println("Registro pieno!");
+        Studente[] nuovoRegistro = new Studente[registro.length + 1];
+        
+        for (int i = 0; i < registro.length; i++) {
+            nuovoRegistro[i] = registro[i];
         }
+        nuovoRegistro[registro.length] = studente;
+        registro = nuovoRegistro;
     }
 
     public void stampaStudenti() {
-        if (counter == 0) {
+        if (registro.length == 0) {
             System.out.println("Nessun studente presente all'interno del registro");
         } else {
-            for(int i = 0; i < counter; i++) {
+            for(int i = 0; i < registro.length; i++) {
                 System.out.println(registro[i].datiConcatenati());
             }
         }
